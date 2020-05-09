@@ -1,6 +1,12 @@
 <main class="show-main">
-<p class="show-p"><%= @book.title %></p>
-<p class="show-p"><%= @book.body %></p>
-
-
+<% flash.each do |message_type, message| %>
+      <%= message %>
+    <% end %>
+<p class="show-p"><strong>Title: </strong><%= @book.title %></p>
+<p class="show-p"><strong>Body: </strong><%= @book.body %></p>
 </main>
+	<tr>
+		<td><%=link_to 'Edit', edit_book_path(@book.id) %></td>
+		<span> | </span>
+		<td><%=link_to 'Back', books_path %></td>
+	</tr>

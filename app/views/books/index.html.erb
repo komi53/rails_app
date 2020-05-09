@@ -4,8 +4,8 @@
 
 <thead class="table">
 	<tr class="record">
-		<th>Title</th>
-		<th>Body</th>
+		<th><b>Title</b></th>
+		<th><b>Body</b></th>
 		<th colspan="3"></th>
 	</tr>
 </thead>
@@ -14,21 +14,34 @@
 	<tr class="record1">
 		<td><%= book.title %></td>
 		<td><%= book.body %></td>
-		<td><%=link_to 'Show', book_path(book.id) %></td>
+		<td><%= link_to 'Show', book_path(book.id) %></td>
+		<td><%= link_to "Edit", edit_book_path(book.id) %></td>
+		<td><%= link_to "Destroy", destroy_book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
 	</tr>
 <% end %>
-
 </table>
 
 <h3 class="sub">New book</h3>
+<% if @book.errors.any? %>
+  <div id="error_explanation">
+    <p>
+      <h2><%= @book.errors.count %>error prohibited this book from being saved:
+      </h2>
+    </p>
+    <ul>
+      <% @book.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 <%= form_for(@book) do |f| %>
- 
-    <div class="title-box">
     	<label class="title">Title</label>
+    	    <div class="title-box">
     	<%= f.text_field :title %>
 	</div>
-	<div class="body-box">
     <label class="body">Body</label>
+    	<div class="body-box">
     <%= f.text_area :body %>
 	</div>
     <div>

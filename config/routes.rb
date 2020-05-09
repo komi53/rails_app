@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 root 'books#top'
-get 'books/index'
-post 'books' => 'books#create'
 
-get 'books/:id' => 'books#show', as: 'book'
+resources :books
+delete 'books/:id' => 'books#destroy', as: 'destroy_book'
 end
